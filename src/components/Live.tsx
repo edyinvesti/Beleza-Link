@@ -82,10 +82,20 @@ export default function Live() {
               <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=100" className="w-10 h-10 rounded-full object-cover border-2 border-[#F97316]" />
               <div><p className="text-[7px] font-black text-[#F97316] uppercase leading-none">Comprar</p><p className="text-[10px] font-black uppercase leading-none">Kit Expert Shine</p></div>
             </div>
+                        {/* BOTÃO DE VOLUME RESTAURADO */}
+              <button 
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if(videoRef.current) videoRef.current.muted = !videoRef.current.muted; 
+                  setIsMuted(!isMuted);
+                }} 
+                className="absolute bottom-6 right-6 z-50 bg-black/60 backdrop-blur-md p-4 rounded-full border border-white/10 hover:bg-[#F97316] hover:text-black transition-all"
+              >
+                {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} />}
+              </button>
+            </div>
           </div>
-        </div>
-
-        <div className="lg:col-span-4 h-[500px] lg:h-[600px] bg-zinc-900/50 rounded-[40px] border border-white/10 flex flex-col overflow-hidden">
+          <div className="lg:col-span-4" h-[500px] lg:h-[600px] bg-zinc-900/50 rounded-[40px] border border-white/10 flex flex-col overflow-hidden">
           <div className="p-4 border-b border-white/5 bg-white/5 text-[9px] font-black uppercase text-zinc-500 tracking-[0.2em] text-center">Live Chat</div>
           <div className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-hide">
             {chat.map((c) => (
