@@ -1,7 +1,7 @@
-Ôªøimport { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/** * INTERFACE T√âCNICA (Resolve Erros 2345/2339) 
+/** * INTERFACE T…CNICA (Resolve Erros 2345/2339) 
  */
 interface Post {
   id: number;
@@ -19,7 +19,7 @@ const allPosts: Post[] = [
     category: "Masculino", 
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAP√çTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contempor√¢nea transcende a est√©tica b√°sica; ela √© uma ferramenta de comunica√ß√£o n√£o-verbal de alt√≠ssimo impacto no ambiente de neg√≥cios e social. No Beleza Link, tratamos o corte como "Arquitetura Identit√°ria". A hist√≥ria do cabelo masculino revela que o estilo sempre foi um marcador de casta, poder e inten√ß√£o. Em 2026, a ruptura ocorre no abandono da uniformidade industrial dos degrad√™s gen√©ricos para a busca da escultura personalizada. O visagismo biom√©trico √© a chave. Analisamos cada mil√≠metro da estrutura √≥ssea para projetar uma sombra que favore√ßa a mand√≠bula e o olhar.\n\n[CAP√çTULO II: GEOMETRIA CRANIANA E A F√çSICA DO CORTE EM TESOURA]\nO dom√≠nio da tesoura √© o que separa o artes√£o do operador de m√°quina. Enquanto a m√°quina corta por impacto mec√¢nico, muitas vezes mastigando a cut√≠cula do fio, a tesoura de fio navalha realiza uma sec√ß√£o precisa. Esta precis√£o preserva a medula do fio, permitindo que o cabelo cres√ßa de forma saud√°vel e mantenha o design por at√© 45 dias. A matem√°tica do corte envolve √¢ngulos de proje√ß√£o de 45 a 90 graus, criando camadas internas que distribuem o peso de forma inteligente. O "Point Cutting" cria canais de textura que permitem o fluxo de ar, essencial para o clima de An√°polis.`
+    content: `[CAPÕTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contempor‚nea transcende a estÈtica b·sica; ela È uma ferramenta de comunicaÁ„o n„o-verbal de altÌssimo impacto no ambiente de negÛcios e social. No Beleza Link, tratamos o corte como "Arquitetura Identit·ria". A histÛria do cabelo masculino revela que o estilo sempre foi um marcador de casta, poder e intenÁ„o. Em 2026, a ruptura ocorre no abandono da uniformidade industrial dos degradÍs genÈricos para a busca da escultura personalizada. O visagismo biomÈtrico È a chave. Analisamos cada milÌmetro da estrutura Ûssea para projetar uma sombra que favoreÁa a mandÌbula e o olhar.\n\n[CAPÕTULO II: GEOMETRIA CRANIANA E A FÕSICA DO CORTE EM TESOURA]\nO domÌnio da tesoura È o que separa o artes„o do operador de m·quina. Enquanto a m·quina corta por impacto mec‚nico, muitas vezes mastigando a cutÌcula do fio, a tesoura de fio navalha realiza uma secÁ„o precisa. Esta precis„o preserva a medula do fio, permitindo que o cabelo cresÁa de forma saud·vel e mantenha o design por atÈ 45 dias. A matem·tica do corte envolve ‚ngulos de projeÁ„o de 45 a 90 graus, criando camadas internas que distribuem o peso de forma inteligente. O "Point Cutting" cria canais de textura que permitem o fluxo de ar, essencial para o clima de An·polis.`
   },
   { 
     id: 2, 
@@ -27,7 +27,7 @@ const allPosts: Post[] = [
     category: "Feminino", 
     image: "https://images.unsplash.com/photo-1595476108010-b4d1f80d77d2?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAP√çTULO I: BIOLOGIA E QU√çMICA DA DESCOLORA√á√ÉO]\nA descolora√ß√£o capilar √© uma interven√ß√£o qu√≠mica profunda. Aplicamos "Slow Bleaching" ‚Äî clareamento lento que respeita o tempo de oxida√ß√£o da melanina. O fio tem queratina e pontes de dissulfeto; se rompidas violentamente, o fio "emborracha". O controle cin√©tico evita o superaquecimento do c√≥rtex. A cut√≠cula deve ser aberta de forma controlada para n√£o perder a capacidade de reter nutrientes.\n\n[CAP√çTULO II: ENGENHARIA DOS BOND BUILDERS]\nTecnologia Plex atua como cimento molecular. Injetamos pol√≠meros que reconectam as fibras em tempo real. Isso impede a quebra e permite atingir tons clar√≠ssimos mantendo a for√ßa tensora. Amino√°cidos de baixo peso molecular, como arginina e ciste√≠na, penetram na fibra mesmo saturada. O loiro inteligente foca na preserva√ß√£o total do c√≥rtex capilar.`
+    content: `[CAPÕTULO I: BIOLOGIA E QUÕMICA DA DESCOLORA«√O]\nA descoloraÁ„o capilar È uma intervenÁ„o quÌmica profunda. Aplicamos "Slow Bleaching" ó clareamento lento que respeita o tempo de oxidaÁ„o da melanina. O fio tem queratina e pontes de dissulfeto; se rompidas violentamente, o fio "emborracha". O controle cinÈtico evita o superaquecimento do cÛrtex. A cutÌcula deve ser aberta de forma controlada para n„o perder a capacidade de reter nutrientes.\n\n[CAPÕTULO II: ENGENHARIA DOS BOND BUILDERS]\nTecnologia Plex atua como cimento molecular. Injetamos polÌmeros que reconectam as fibras em tempo real. Isso impede a quebra e permite atingir tons clarÌssimos mantendo a forÁa tensora. Amino·cidos de baixo peso molecular, como arginina e cisteÌna, penetram na fibra mesmo saturada. O loiro inteligente foca na preservaÁ„o total do cÛrtex capilar.`
   }
 ];
 
@@ -47,8 +47,8 @@ export default function Blog() {
           {!selectedPost ? (
             <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="mb-20 text-center">
-                <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link Intelig√™ncia</h2>
-                <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DI√ÅRIO</span></h1>
+                <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link InteligÍncia</h2>
+                <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DI¡RIO</span></h1>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -83,9 +83,9 @@ export default function Blog() {
                  
                  <div className="pt-24">
                     <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_20px_50px_rgba(249,115,22,0.2)]">
-                      üõí Adquirir Kit de Manuten√ß√£o Profissional
+                      ?? Adquirir Kit de ManutenÁ„o Profissional
                     </a>
-                    <p className="text-center text-[10px] opacity-20 mt-6 uppercase tracking-widest">Tecnologia e Ci√™ncia aplicada √† sua imagem</p>
+                    <p className="text-center text-[10px] opacity-20 mt-6 uppercase tracking-widest">Tecnologia e CiÍncia aplicada ‡ sua imagem</p>
                  </div>
                </div>
             </motion.div>
