@@ -1,5 +1,5 @@
 ﻿import { useState, useEffect, useRef } from "react";
-import { Volume2, VolumeX, Send, ChevronLeft, Share2 } from "lucide-react";
+import { Volume2, VolumeX, Send, Share2 } from "lucide-react";
 
 export default function Live() {
   const [msgInput, setMsgInput] = useState("");
