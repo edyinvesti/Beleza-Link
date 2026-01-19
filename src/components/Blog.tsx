@@ -41,19 +41,12 @@ const allPosts = [
     excerpt: "Pequenos detalhes que encantam clientes de alto padrão.",
     content: "No mercado de luxo, você não vende um serviço, você vende uma experiência. Desde a temperatura do café até o aroma do ambiente, cada detalhe conta. A pontualidade e o atendimento personalizado são a base para fidelizar o público que busca exclusividade."
   }
-  // ... (os outros posts seguem a mesma lógica de conteúdo)
 ];
 
 export default function Blog() {
   const dayOfMonth = new Date().getDate();
   const dailyPostIndex = dayOfMonth % allPosts.length;
   const activePost = allPosts[dailyPostIndex];
-
-  const handleAgendar = () => {
-    const telefone = "5562992115143";
-    const mensagem = encodeURIComponent(`Olá! Li a matéria "${activePost.title}" e quero agendar.`);
-    window.open(`https://wa.me/${telefone}?text=${mensagem}`, "_blank");
-  };
 
   return (
     <div className="min-h-screen bg-black pt-24 pb-12 px-4">
@@ -67,7 +60,7 @@ export default function Blog() {
           key={activePost.id}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#0a0a0a] border border-white/10 rounded-[40px] overflow-hidden"
+          className="bg-[#0a0a0a] border border-white/10 rounded-[40px] overflow-hidden mb-20"
         >
           <div className="h-[400px] overflow-hidden relative">
              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
@@ -78,18 +71,14 @@ export default function Blog() {
             <span className="bg-[#F97316] text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">{activePost.category}</span>
             <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">{activePost.title}</h2>
             
-            {/* O TEXTO DA MATÉRIA AGORA APARECE AQUI */}
-            <div className="text-white/70 text-lg leading-relaxed mb-10 space-y-4">
+            <div className="text-white/70 text-lg leading-relaxed space-y-4">
               <p className="border-l-4 border-[#F97316] pl-6 italic text-white font-medium">"{activePost.excerpt}"</p>
               <p>{activePost.content}</p>
             </div>
-
-            <button 
-              onClick={handleAgendar}
-              className="w-full md:w-auto bg-white text-black px-10 py-4 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-[#F97316] hover:text-white transition-all shadow-lg shadow-orange-500/10"
-            >
-              Agendar este serviço
-            </button>
+            
+            <div className="mt-12 pt-8 border-t border-white/5">
+                <p className="text-white/30 text-[10px] uppercase tracking-[0.5em]">Beleza Link • Conteúdo Diário Inteligente</p>
+            </div>
           </div>
         </motion.article>
       </div>
