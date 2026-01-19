@@ -13,7 +13,7 @@ const allPosts = [
   { id: 10, title: "Aroma e Presença", category: "Unissex", image: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&q=80&w=800", excerpt: "Como escolher o perfume ideal que combina com o seu estilo." },
   { id: 11, title: "Degradê Perfeito", category: "Masculino", image: "https://images.unsplash.com/photo-1532710093739-9470acff878f?auto=format&fit=crop&q=80&w=800", excerpt: "As variações de fade que estão em alta nos grandes centros." },
   { id: 12, title: "Terapia Capilar", category: "Feminino", image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800", excerpt: "Tratamentos profundos para reconstrução total da fibra." },
-  { id: 13, title: "Eronomia no Trabalho", category: "Carreira", image: "https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800", excerpt: "Como proteger a sua saúde física durante as horas de atendimento." },
+  { id: 13, title: "Ergonomia no Trabalho", category: "Carreira", image: "https://images.unsplash.com/photo-1590439471364-192aa70c0b53?auto=format&fit=crop&q=80&w=800", excerpt: "Como proteger a sua saúde física durante as horas de atendimento." },
   { id: 14, title: "Sobrancelhas e Olhar", category: "Feminino", image: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?auto=format&fit=crop&q=80&w=800", excerpt: "O design de sobrancelhas como moldura para um olhar marcante." },
   { id: 15, title: "Networking na Beleza", category: "Carreira", image: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=800", excerpt: "Como criar parcerias lucrativas no mercado da estética." }
 ];
@@ -22,6 +22,13 @@ export default function Blog() {
   const dayOfMonth = new Date().getDate();
   const dailyPostIndex = dayOfMonth % allPosts.length;
   const activePost = allPosts[dailyPostIndex];
+
+  // Link de WhatsApp para agendamento
+  const handleAgendar = () => {
+    const telefone = "5511999999999"; // SUBSTITUA PELO SEU NÚMERO
+    const mensagem = encodeURIComponent(`Olá! Vi a matéria sobre "${activePost.title}" no Blog Beleza Link e gostaria de saber mais sobre este serviço.`);
+    window.open(`https://wa.me/${telefone}?text=${mensagem}`, "_blank");
+  };
 
   return (
     <div className="min-h-screen bg-black pt-24 pb-12 px-4">
@@ -47,9 +54,12 @@ export default function Blog() {
             </span>
             <h2 className="text-4xl font-bold text-white mt-6 mb-4">{activePost.title}</h2>
             <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-2xl">{activePost.excerpt}</p>
-            <button className="group flex items-center gap-3 text-white font-bold uppercase text-xs tracking-[0.2em]">
+            <button 
+              onClick={handleAgendar}
+              className="group flex items-center gap-3 text-white font-bold uppercase text-xs tracking-[0.2em] hover:text-[#F97316] transition-colors"
+            >
               <span className="w-12 h-[2px] bg-[#F97316] group-hover:w-20 transition-all" />
-              Ler Matéria Completa
+              Agendar este serviço
             </button>
           </div>
         </motion.article>
