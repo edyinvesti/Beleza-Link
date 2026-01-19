@@ -4,10 +4,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const allPosts = [
   { 
     id: 1, 
-    title: "A Engenharia do Visagismo Masculino: O Guia Definitivo 2026", 
+    title: "Arquitetura do Corte", 
     category: "Masculino", 
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1200", 
-    excerpt: "Uma tese completa sobre a evolução da imagem masculina, técnicas de corte na tesoura e a psicologia do estilo contemporâneo.",
+    excerpt: "Uma tese completa sobre a evolução da imagem masculina e a psicologia do estilo contemporâneo.",
     content: `Capítulo I: A Evolução Histórica e a Ruptura de 2026
     Para compreender o estado atual da barbearia de luxo, precisamos olhar para trás. A imagem masculina deixou de ser uma mera formalidade para se tornar uma ferramenta de comunicação não-verbal de altíssimo impacto. No Beleza Link, tratamos o corte não como uma simples remoção de fios, mas como uma verdadeira escultura facial. Em 2026, a grande ruptura é o abandono total da uniformidade dos degradês industriais feitos apenas em máquina. O homem contemporâneo de sucesso busca agora a exclusividade do "Bespoke Haircut" — o corte feito sob medida para a sua estrutura.
 
@@ -31,10 +31,10 @@ const allPosts = [
   },
   { 
     id: 2, 
-    title: "A Alquimia do Loiro Perfeito: Da Biologia do Fio ao Design de Cor", 
+    title: "Alquimia do Loiro", 
     category: "Feminino", 
     image: "https://images.unsplash.com/photo-1595476108010-b4d1f80d77d2?auto=format&fit=crop&q=80&w=1200", 
-    excerpt: "Um tratado técnico sobre descoloração segura, reconstrução molecular e o conceito de Loiro Inteligente para a mulher moderna.",
+    excerpt: "Um tratado técnico sobre descoloração segura, reconstrução molecular e o conceito de Loiro Inteligente.",
     content: `Introdução: O Conceito de Loiro de Alta Performance
     Ser loira é um estado de espírito e um investimento em autoestima que exige um entendimento profundo da biologia capilar. No Beleza Link, abandonamos as técnicas agressivas de clareamento rápido que sacrificam a saúde do fio. Nossa filosofia é o "Slow Bleaching" — uma descoloração lenta, artesanal e controlada que preserva a integridade absoluta das pontes de hidrogénio e enxofre do fio.
 
@@ -51,17 +51,36 @@ const allPosts = [
     A manutenção em casa é responsável por 50% do sucesso de um loiro de luxo a longo prazo. 
     1. Higienização: O uso de shampoos com pH rigorosamente balanceado (4.5 a 5.5) é crucial para não abrir as cutículas e perder o pigmento matizador.
     2. Nutrição: O cabelo descolorido tem uma necessidade extrema de lipídios. Máscaras ricas em óleos nobres de semente de uva e camélia devem ser usadas semanalmente.
-    3. Proteção Térmica: O calor do secador é o maior inimigo da cor vibrante. Finalizadores com proteção térmica agem como um filme protetor, evitando a oxidação prematura e o amarelamento indesejado.
+    3. Proteção Térmica: O calor do secador é o maior inimigo da cor vibrante. Finalizadores com proteção térmica agem como um filme protetor, evitando a oxidação prematura e o amarelamento indesejado.`
+  },
+  { 
+    id: 3, 
+    title: "Poder Minimalista", 
+    category: "Penteados", 
+    image: "https://images.unsplash.com/photo-1492706682371-2f2ed5151c0f?auto=format&fit=crop&q=80&w=1200", 
+    excerpt: "Do coque Sleek às ondas Hollywoodianas, descubra o que define a elegância nas grandes recepções.",
+    content: `Introdução: A Estética do Luxo Silencioso
+    Em 2026, o conceito de 'Luxo Silencioso' dominou as passadeiras vermelhas. A estética agora foca na perfeição da forma em vez da complexidade excessiva. Um penteado de sucesso deve parecer sem esforço, embora exija uma técnica magistral de preparação e execução. No Beleza Link, entendemos que o penteado é o quadro que emoldura o rosto.
 
-    Conclusão: A Experiência de Luxo Beleza Link
-    Escolher o Beleza Link para o seu loiro é escolher a segurança da ciência aliada ao olhar artístico mais refinado do mercado. Entendemos que cada cliente é única e que a cor perfeita é aquela que brilha com saúde natural e movimento, refletindo a sofisticação de uma mulher que não aceita nada menos que a perfeição.`
+    Seção I: A Técnica do Sleek Look
+    O coque polido tornou-se a marca registada da sofisticação moderna. O segredo reside na preparação: um brushing impecável seguido da aplicação de bálsamos antifrizz de alta tecnologia. A posição do coque deve seguir rigorosamente o ângulo do maxilar para criar um efeito de 'lifting' facial natural e elegante.
+
+    Seção II: Ondas de Cinema (Old Hollywood)
+    Diferente dos caracóis comuns, as ondas de gala são contínuas. Após o uso do modelador, os fios são escovados em conjunto para criar uma única síncope de brilho. Esta técnica realça as nuances da coloração e confere uma aura de glamour clássico que nunca passa de moda, garantindo que o cabelo brilhe sob qualquer iluminação.
+
+    Seção III: A Importância dos Finalizadores de Luxo
+    A escolha do acessório deve ser minimalista para não competir com a beleza natural. No Beleza Link, acreditamos que o penteado é o suporte para a joia da cliente. O uso de finalizadores de brilho espelhado e sprays de fixação com partículas de seda garante que o penteado resista a horas de evento mantendo a maleabilidade.`
   }
 ];
 
 export default function Blog() {
   const [selectedPost, setSelectedPost] = useState(null);
   const day = new Date().getDate();
-  const displayPosts = [allPosts[day % allPosts.length], allPosts[(day + 1) % allPosts.length]].filter(Boolean);
+  const displayPosts = [
+    allPosts[day % allPosts.length],
+    allPosts[(day + 1) % allPosts.length],
+    allPosts[(day + 2) % allPosts.length]
+  ].filter(Boolean);
 
   return (
     <div className="min-h-screen bg-black pt-24 pb-20 px-4 font-sans text-white">
@@ -74,20 +93,16 @@ export default function Blog() {
                 <h1 className="text-7xl md:text-[12rem] font-black uppercase tracking-tighter leading-none opacity-20 absolute left-0 right-0 pointer-events-none">EDIÇÃO</h1>
                 <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none relative z-10">O <span className="text-[#F97316]">DIÁRIO</span></h1>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-20">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 {displayPosts.map((post, i) => (
                   <motion.article key={i} onClick={() => setSelectedPost(post)} className="cursor-pointer group">
-                    <div className="h-[700px] overflow-hidden rounded-[60px] border border-white/5 relative bg-[#050505]">
+                    <div className="h-[550px] overflow-hidden rounded-[40px] border border-white/5 relative bg-[#050505]">
                       <img src={post.image} className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-[2s] group-hover:scale-105" alt={post.title} />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                      <div className="absolute bottom-16 left-12 right-12">
-                        <span className="text-[#F97316] text-xs font-black uppercase tracking-[0.4em] mb-6 block">{post.category}</span>
-                        <h3 className="text-5xl font-bold mb-8 leading-[0.9] tracking-tighter group-hover:text-[#F97316] transition-colors">{post.title}</h3>
-                        <p className="text-white/40 text-xl font-light line-clamp-2 mb-10">{post.excerpt}</p>
-                        <div className="flex items-center gap-4">
-                            <div className="h-[1px] w-20 bg-[#F97316]" />
-                            <span className="text-xs font-bold uppercase tracking-widest">Leitura Completa</span>
-                        </div>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                      <div className="absolute bottom-12 left-10 right-10">
+                        <span className="text-[#F97316] text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">{post.category}</span>
+                        <h3 className="text-3xl font-bold mb-6 leading-none group-hover:text-[#F97316] transition-colors uppercase tracking-tighter">{post.title}</h3>
+                        <div className="w-8 h-[2px] bg-[#F97316] group-hover:w-full transition-all duration-700" />
                       </div>
                     </div>
                   </motion.article>
@@ -95,26 +110,14 @@ export default function Blog() {
               </div>
             </motion.div>
           ) : (
-            <motion.div key="reading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="max-w-5xl mx-auto">
-              <button onClick={() => setSelectedPost(null)} className="text-[#F97316] font-bold text-xs tracking-[0.5em] mb-20 hover:tracking-[0.8em] transition-all">
+            <motion.div key="reading" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="max-w-4xl mx-auto">
+              <button onClick={() => setSelectedPost(null)} className="text-[#F97316] font-bold text-xs tracking-[0.5em] mb-12 hover:tracking-[0.8em] transition-all">
                 ← VOLTAR PARA A CAPA
               </button>
-              
-              <div className="mb-24">
-                <h2 className="text-6xl md:text-8xl font-black mb-12 leading-[0.8] tracking-tighter text-justify uppercase">{selectedPost.title}</h2>
-                <div className="flex items-center gap-8 mb-16">
-                    <span className="bg-[#F97316] text-black px-6 py-2 rounded-full font-black text-xs uppercase tracking-widest">{selectedPost.category}</span>
-                    <span className="text-white/30 text-xs uppercase tracking-[0.3em]">Tempo de leitura: 15 min</span>
-                </div>
-              </div>
-
-              <div className="text-white text-2xl md:text-3xl leading-[1.8] font-light space-y-16 whitespace-pre-line text-justify border-l border-white/10 pl-12 md:pl-20 mb-32">
+              <h2 className="text-6xl md:text-8xl font-black mb-10 leading-[0.85] tracking-tighter uppercase">{selectedPost.title}</h2>
+              <img src={selectedPost.image} className="w-full h-[500px] object-cover rounded-[50px] mb-16 shadow-2xl" />
+              <div className="text-white/80 text-2xl leading-[2] font-light space-y-12 whitespace-pre-line text-justify pb-32">
                 {selectedPost.content}
-              </div>
-
-              <div className="border-t border-white/10 pt-20 flex justify-between items-center opacity-40 mb-20">
-                <div className="text-2xl font-black uppercase">Beleza Link</div>
-                <p className="text-[10px] uppercase tracking-[1em]">Brasil • 2026</p>
               </div>
             </motion.div>
           )}
