@@ -23,10 +23,9 @@ export default function Blog() {
   const dailyPostIndex = dayOfMonth % allPosts.length;
   const activePost = allPosts[dailyPostIndex];
 
-  // Link de WhatsApp para agendamento
   const handleAgendar = () => {
-    const telefone = "5511999999999"; // SUBSTITUA PELO SEU NÚMERO
-    const mensagem = encodeURIComponent(`Olá! Vi a matéria sobre "${activePost.title}" no Blog Beleza Link e gostaria de saber mais sobre este serviço.`);
+    const telefone = "5562992115143";
+    const mensagem = encodeURIComponent(`Olá! Vi a matéria sobre "${activePost.title}" no Blog Beleza Link e gostaria de agendar um horário.`);
     window.open(`https://wa.me/${telefone}?text=${mensagem}`, "_blank");
   };
 
@@ -34,32 +33,31 @@ export default function Blog() {
     <div className="min-h-screen bg-black pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center mb-12">
-          <h2 className="text-[#F97316] text-sm font-bold tracking-[0.3em] uppercase mb-2">Matéria do Dia</h2>
-          <h1 className="text-4xl font-light text-white uppercase tracking-tighter">INTELIGÊNCIA <span className="text-[#F97316] font-black">LINK</span></h1>
+          <h2 className="text-[#F97316] text-sm font-bold tracking-[0.3em] uppercase mb-2">Conteúdo Diário</h2>
+          <h1 className="text-4xl font-light text-white uppercase tracking-tighter italic">BELEZA <span className="text-[#F97316] font-black">INTELIGENTE</span></h1>
         </motion.div>
 
         <motion.article 
           key={activePost.id}
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#111] border border-[#F97316]/20 rounded-3xl overflow-hidden shadow-2xl"
+          className="bg-[#0a0a0a] border border-white/10 rounded-[40px] overflow-hidden shadow-[0_0_50px_rgba(249,115,22,0.1)]"
         >
-          <div className="h-[450px] overflow-hidden relative">
-             <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10" />
-             <img src={activePost.image} className="w-full h-full object-cover" alt="Blog" />
+          <div className="h-[500px] overflow-hidden relative group">
+             <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
+             <img src={activePost.image} className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700" alt="Blog" />
           </div>
-          <div className="p-10 relative z-20 mt-[-100px]">
-            <span className="bg-[#F97316] text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+          <div className="p-12 relative z-20 mt-[-120px]">
+            <div className="inline-block bg-[#F97316] text-black px-6 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.2em] mb-6">
               {activePost.category}
-            </span>
-            <h2 className="text-4xl font-bold text-white mt-6 mb-4">{activePost.title}</h2>
-            <p className="text-white/70 text-lg leading-relaxed mb-8 max-w-2xl">{activePost.excerpt}</p>
+            </div>
+            <h2 className="text-5xl font-bold text-white mt-2 mb-6 leading-tight tracking-tighter">{activePost.title}</h2>
+            <p className="text-white/50 text-xl font-light leading-relaxed mb-10 max-w-2xl italic">"{activePost.excerpt}"</p>
             <button 
               onClick={handleAgendar}
-              className="group flex items-center gap-3 text-white font-bold uppercase text-xs tracking-[0.2em] hover:text-[#F97316] transition-colors"
+              className="bg-white text-black px-10 py-4 rounded-full font-black uppercase text-xs tracking-[0.3em] hover:bg-[#F97316] hover:text-white transition-all duration-300 transform hover:scale-105"
             >
-              <span className="w-12 h-[2px] bg-[#F97316] group-hover:w-20 transition-all" />
-              Agendar este serviço
+              Agendar via WhatsApp
             </button>
           </div>
         </motion.article>
