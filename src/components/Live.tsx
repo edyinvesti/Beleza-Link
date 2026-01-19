@@ -33,7 +33,7 @@ export default function Live() {
 
   return (
     <div className="min-h-screen bg-black text-white pt-24 font-sans">
-      {/* NAVBAR COM TUDO: VOLTAR, AO VIVO E PARTILHAR */}
+      {/* NAVBAR COM TUDO: AO VIVO E PARTILHAR */}
       <nav className="fixed top-0 w-full z-[100] bg-black/95 border-b border-white/5 p-4 flex items-center justify-between px-6">
         <button onClick={() => window.history.back()} className="bg-[#F97316] text-black px-6 py-2 rounded-xl font-black text-[10px] uppercase flex items-center gap-2">
           <ChevronLeft size={14} /> Voltar
@@ -59,9 +59,8 @@ export default function Live() {
             {/* Selo do Produto */}
             <div onClick={() => window.open('https://wa.me/5511999999999')} className="absolute top-4 left-4 bg-black/80 p-2 pr-4 rounded-full border border-white/20 flex items-center gap-3 cursor-pointer z-50">
               <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=100" className="w-10 h-10 rounded-full object-cover border-2 border-[#F97316]" />
-              <div><p className="text-[7px] font-black text-[#F97316] uppercase">Comprar</p><p className="text-[10px] font-black uppercase">Kit Expert Shine</p></div>
+              <div><p className="text-[7px] font-black text-[#F97316] uppercase">Comprar</p><p className="text-[10px] font-black uppercase">Kit Banho de Verniz</p></div>
             </div>
-
             {/* Volume Restaurado */}
             <button onClick={() => {if(videoRef.current) videoRef.current.muted = !videoRef.current.muted; setIsMuted(!isMuted)}} className="absolute bottom-6 right-6 z-50 bg-black/60 p-4 rounded-full border border-white/10">
               {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-[#F97316]" />}
