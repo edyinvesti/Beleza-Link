@@ -1,8 +1,6 @@
-import { useState, useEffect } from "react";
+Ôªøimport { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-/** * INTERFACE T…CNICA (Resolve Erros 2345/2339) 
- */
 interface Post {
   id: number;
   title: string;
@@ -19,7 +17,7 @@ const allPosts: Post[] = [
     category: "Masculino", 
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAPÕTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contempor‚nea transcende a estÈtica b·sica; ela È uma ferramenta de comunicaÁ„o n„o-verbal de altÌssimo impacto no ambiente de negÛcios e social. No Beleza Link, tratamos o corte como "Arquitetura Identit·ria". A histÛria do cabelo masculino revela que o estilo sempre foi um marcador de casta, poder e intenÁ„o. Em 2026, a ruptura ocorre no abandono da uniformidade industrial dos degradÍs genÈricos para a busca da escultura personalizada. O visagismo biomÈtrico È a chave. Analisamos cada milÌmetro da estrutura Ûssea para projetar uma sombra que favoreÁa a mandÌbula e o olhar.\n\n[CAPÕTULO II: GEOMETRIA CRANIANA E A FÕSICA DO CORTE EM TESOURA]\nO domÌnio da tesoura È o que separa o artes„o do operador de m·quina. Enquanto a m·quina corta por impacto mec‚nico, muitas vezes mastigando a cutÌcula do fio, a tesoura de fio navalha realiza uma secÁ„o precisa. Esta precis„o preserva a medula do fio, permitindo que o cabelo cresÁa de forma saud·vel e mantenha o design por atÈ 45 dias. A matem·tica do corte envolve ‚ngulos de projeÁ„o de 45 a 90 graus, criando camadas internas que distribuem o peso de forma inteligente. O "Point Cutting" cria canais de textura que permitem o fluxo de ar, essencial para o clima de An·polis.`
+    content: `[CAP√çTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contempor√¢nea transcende a est√©tica b√°sica; ela √© uma ferramenta de comunica√ß√£o n√£o-verbal de alt√≠ssimo impacto no ambiente de neg√≥cios e social. No Beleza Link, tratamos o corte como "Arquitetura Identit√°ria".\n\n[CAP√çTULO II: GEOMETRIA CRANIANA E A F√çSICA DO CORTE EM TESOURA]\nO dom√≠nio da tesoura √© o que separa o artes√£o do operador de m√°quina. Enquanto a m√°quina corta por impacto mec√¢nico, a tesoura de fio navalha realiza uma sec√ß√£o precisa, preservando a sa√∫de do fio e mantendo o design por muito mais tempo.`
   },
   { 
     id: 2, 
@@ -27,7 +25,7 @@ const allPosts: Post[] = [
     category: "Feminino", 
     image: "https://images.unsplash.com/photo-1595476108010-b4d1f80d77d2?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAPÕTULO I: BIOLOGIA E QUÕMICA DA DESCOLORA«√O]\nA descoloraÁ„o capilar È uma intervenÁ„o quÌmica profunda. Aplicamos "Slow Bleaching" ó clareamento lento que respeita o tempo de oxidaÁ„o da melanina. O fio tem queratina e pontes de dissulfeto; se rompidas violentamente, o fio "emborracha". O controle cinÈtico evita o superaquecimento do cÛrtex. A cutÌcula deve ser aberta de forma controlada para n„o perder a capacidade de reter nutrientes.\n\n[CAPÕTULO II: ENGENHARIA DOS BOND BUILDERS]\nTecnologia Plex atua como cimento molecular. Injetamos polÌmeros que reconectam as fibras em tempo real. Isso impede a quebra e permite atingir tons clarÌssimos mantendo a forÁa tensora. Amino·cidos de baixo peso molecular, como arginina e cisteÌna, penetram na fibra mesmo saturada. O loiro inteligente foca na preservaÁ„o total do cÛrtex capilar.`
+    content: `[CAP√çTULO I: BIOLOGIA E QU√çMICA DA DESCOLORA√á√ÉO]\nA descolora√ß√£o capilar √© uma interven√ß√£o qu√≠mica profunda. Aplicamos "Slow Bleaching" ‚Äî clareamento lento que respeita o tempo de oxida√ß√£o da melanina sem comprometer as pontes de dissulfeto.\n\n[CAP√çTULO II: ENGENHARIA DOS BOND BUILDERS]\nUtilizamos tecnologia Plex para atuar como um cimento molecular, reconectando as fibras em tempo real e permitindo atingir tons clar√≠ssimos com total seguran√ßa.`
   }
 ];
 
@@ -35,20 +33,18 @@ export default function Blog() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => { 
-    if (selectedPost) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    if (selectedPost) window.scrollTo({ top: 0, behavior: "smooth" });
   }, [selectedPost]);
 
   return (
-    <div className="min-h-screen bg-black pt-20 pb-10 px-4 text-white font-sans selection:bg-[#F97316] selection:text-black">
+    <div className="min-h-screen bg-black pt-20 pb-10 px-4 text-white font-sans">
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           {!selectedPost ? (
             <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="mb-20 text-center">
-                <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link InteligÍncia</h2>
-                <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DI¡RIO</span></h1>
+                <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link Intelig√™ncia</h2>
+                <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DI√ÅRIO</span></h1>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -56,12 +52,12 @@ export default function Blog() {
                   <motion.article 
                     key={post.id} 
                     onClick={() => setSelectedPost(post)} 
-                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all hover:border-[#F97316]/30"
+                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all"
                   >
                     <div className="h-[500px] bg-[#111]">
                       <img src={post.image} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt={post.title} />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
                     <div className="absolute bottom-10 left-10 right-10">
                       <span className="text-[#F97316] text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">{post.category}</span>
                       <h3 className="text-4xl font-bold uppercase tracking-tighter leading-none">{post.title}</h3>
@@ -72,20 +68,19 @@ export default function Blog() {
             </motion.div>
           ) : (
             <motion.div key="reading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="max-w-4xl mx-auto">
+               {/* O BOT√ÉO FOI DELETADO DAQUI E DE TODO O ARQUIVO */}
                <h2 className="text-5xl md:text-8xl font-black mb-16 leading-none tracking-tighter uppercase">{selectedPost.title}</h2>
                
-               <div className="rounded-[40px] overflow-hidden mb-16 shadow-[0_0_100px_rgba(0,0,0,1)]">
-                 <img src={selectedPost.image} className="w-full h-full object-cover" alt={selectedPost.title} />
+               <div className="rounded-[40px] overflow-hidden mb-16 shadow-2xl">
+                 <img src={selectedPost.image} className="w-full object-cover" alt={selectedPost.title} />
                </div>
 
-               <div className="text-white/80 text-xl md:text-2xl leading-relaxed space-y-12 text-justify pb-20 px-4 border-l-2 border-[#F97316]/20 ml-2">
+               <div className="text-white/80 text-xl md:text-2xl leading-relaxed space-y-12 text-justify pb-20 px-4">
                  {selectedPost.content}
-                 
-                 <div className="pt-24">
-                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_20px_50px_rgba(249,115,22,0.2)]">
-                      ?? Adquirir Kit de ManutenÁ„o Profissional
+                 <div className="pt-20">
+                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_0_30px_rgba(249,115,22,0.3)]">
+                      Adquirir Kit de Manuten√ß√£o Profissional
                     </a>
-                    <p className="text-center text-[10px] opacity-20 mt-6 uppercase tracking-widest">Tecnologia e CiÍncia aplicada ‡ sua imagem</p>
                  </div>
                </div>
             </motion.div>
