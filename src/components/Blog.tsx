@@ -52,32 +52,37 @@ export default function Blog() {
     <div className="min-h-screen bg-black pt-24 pb-12 px-4">
       <div className="max-w-4xl mx-auto">
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="text-center mb-12">
-          <h2 className="text-[#F97316] text-sm font-bold tracking-[0.3em] uppercase mb-2">Leitura de Hoje</h2>
-          <h1 className="text-4xl font-light text-white uppercase tracking-tighter italic">BELEZA <span className="text-[#F97316] font-black">LINK</span></h1>
+          <h2 className="text-[#F97316] text-sm font-bold tracking-[0.3em] uppercase mb-2">Artigo de Hoje</h2>
+          <h1 className="text-4xl font-light text-white uppercase tracking-tighter">ESTÉTICA <span className="text-[#F97316] font-black">EXCLUSIVA</span></h1>
         </motion.div>
 
         <motion.article 
           key={activePost.id}
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-[#0a0a0a] border border-white/10 rounded-[40px] overflow-hidden mb-20"
+          className="bg-[#0a0a0a] border border-white/10 rounded-[40px] overflow-hidden mb-20 shadow-2xl"
         >
           <div className="h-[400px] overflow-hidden relative">
              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent z-10" />
-             <img src={activePost.image} className="w-full h-full object-cover" alt="Blog" />
+             <img src={activePost.image} className="w-full h-full object-cover" alt="Artigo" />
           </div>
           
           <div className="p-8 md:p-12 relative z-20 mt-[-80px]">
             <span className="bg-[#F97316] text-black px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">{activePost.category}</span>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6">{activePost.title}</h2>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">{activePost.title}</h2>
             
-            <div className="text-white/70 text-lg leading-relaxed space-y-4">
-              <p className="border-l-4 border-[#F97316] pl-6 italic text-white font-medium">"{activePost.excerpt}"</p>
-              <p>{activePost.content}</p>
+            <div className="text-white/70 text-lg leading-relaxed space-y-6">
+              <p className="border-l-4 border-[#F97316] pl-6 italic text-white/90 font-medium text-xl">
+                {activePost.excerpt}
+              </p>
+              <p className="first-letter:text-5xl first-letter:font-bold first-letter:text-[#F97316] first-letter:mr-3 first-letter:float-left">
+                {activePost.content}
+              </p>
             </div>
             
-            <div className="mt-12 pt-8 border-t border-white/5">
-                <p className="text-white/30 text-[10px] uppercase tracking-[0.5em]">Beleza Link • Conteúdo Diário Inteligente</p>
+            <div className="mt-16 pt-8 border-t border-white/5 flex justify-between items-center">
+                <p className="text-white/20 text-[9px] uppercase tracking-[0.4em]">Beleza Link Editorial</p>
+                <div className="h-[1px] w-20 bg-white/10"></div>
             </div>
           </div>
         </motion.article>
