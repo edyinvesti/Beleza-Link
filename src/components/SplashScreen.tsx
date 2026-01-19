@@ -1,20 +1,29 @@
-﻿import { useState } from "react";
+﻿import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const [isStarted, setIsStarted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
 
+  // Pré-carregamento do som de impacto
+  const [audio]] = useState(new Audio("https://actions.google.com/sounds/v1/foley/wind_chime_fast.ogg"));
+
   const handleStart = () => {
     setIsStarted(true);
-    const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3");
-    audio.volume = 0.9;
-    audio.play().catch(e => console.error("Erro:", e));
+    
+    // Configuração de volume e reprodução imediata
+    audio.volume = 0.5;
+    audio.play().catch(e => {
+      console.error("Erro ao tocar som:", e);
+      // Fallback: tenta tocar um som alternativo se o primeiro falhar
+      const altAudio = new Audio("https://www.soundjay.com/buttons/sounds/button-30.mp3");
+      altAudio.play();
+    });
 
     setTimeout(() => {
       setIsVisible(false);
       setTimeout(onFinish, 1000);
-    }, 2500); // 2.5s Turbo
+    }, 3000); 
   };
 
   const slogan = "Sempre ao lado do profissional";
@@ -28,12 +37,21 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
           transition={{ duration: 0.8 }}
         >
           {!isStarted ? (
-            <motion.button onClick={handleStart} className="flex flex-col items-center bg-transparent border-none cursor-pointer">
+            <motion.button 
+              onClick={handleStart} 
+              className="flex flex-col items-center bg-transparent border-none cursor-pointer outline-none"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
               <div className="w-24 h-24 mb-6 border-2 border-[#F97316] rounded-full flex items-center justify-center relative">
                 <div className="absolute inset-0 rounded-full bg-[#F97316]/20 animate-ping" />
-                <svg width="30" height="30" viewBox="0 0 24 24" fill="none"><path d="M5 3L19 12L5 21V3Z" fill="#F97316" /></svg>
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
+                  <path d="M5 3L19 12L5 21V3Z" fill="#F97316" />
+                </svg>
               </div>
-              <span className="text-white font-light tracking-[0.5em] uppercase text-[12px]">Entrar na Experiência</span>
+              <span className="text-white font-light tracking-[0.5em] uppercase text-[12px] animate-pulse">
+                Entrar na Experiência
+              </span>
             </motion.button>
           ) : (
             <div className="relative flex flex-col items-center text-center">
@@ -49,7 +67,6 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
                     initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }} />
                 </svg>
-                
                 <motion.div 
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: [0, 1, 0], scale: [0.5, 2.8, 3.5] }}
@@ -58,39 +75,24 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
                 />
               </div>
 
-              <motion.div 
-                initial={{ opacity: 0, y: 15 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                transition={{ delay: 1, duration: 0.8 }}
-                className="mt-[-20px]"
-              >
+              <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8 }} className="mt-[-20px]">
                 <h1 className="text-4xl font-extralight text-white uppercase tracking-[0.6em] ml-[0.6em]">
                   BELEZA <span className="text-[#F97316] font-black">LINK</span>
                 </h1>
-                
-                <motion.div 
-                  className="flex justify-center mt-4 overflow-hidden"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.2 }}
-                >
+                <div className="flex justify-center mt-4 overflow-hidden">
                   {slogan.split("").map((char, index) => (
                     <motion.span
                       key={index}
-                      initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
-                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      transition={{ 
-                        delay: 1.2 + (index * 0.03), 
-                        duration: 0.5,
-                        ease: "easeOut"
-                      }}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 1.2 + (index * 0.03) }}
                       className="text-[#F97316] text-[10px] font-bold uppercase italic inline-block"
                       style={{ whiteSpace: char === " " ? "pre" : "normal", letterSpacing: "0.3em" }}
                     >
                       {char}
                     </motion.span>
                   ))}
-                </motion.div>
+                </div>
               </motion.div>
             </div>
           )}
