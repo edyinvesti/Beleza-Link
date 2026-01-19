@@ -36,7 +36,7 @@ export default function Live() {
       {/* NAVBAR COM TUDO: AO VIVO E PARTILHAR */}
       <nav className="fixed top-0 w-full z-[100] bg-black/95 border-b border-white/5 p-4 flex items-center justify-between px-6">
         <button onClick={() => window.history.back()} className="bg-[#F97316] text-black px-6 py-2 rounded-xl font-black text-[10px] uppercase flex items-center gap-2">
-          <ChevronLeft size={14} /> Voltar
+          <ChevronLeft size={14} /> 
         </button>
         
         {/* SINAL AO VIVO RESTAURADO */}
@@ -57,7 +57,7 @@ export default function Live() {
             <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted playsInline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
             
             {/* Selo do Produto */}
-            <div onClick={() => window.open('https://wa.me/5511999999999')} className="absolute top-4 left-4 bg-black/80 p-2 pr-4 rounded-full border border-white/20 flex items-center gap-3 cursor-pointer z-50">
+            <div onClick={() => window.open('https://wa.me/5562992115143')} className="absolute top-4 left-4 bg-black/80 p-2 pr-4 rounded-full border border-white/20 flex items-center gap-3 cursor-pointer z-50">
               <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=100" className="w-10 h-10 rounded-full object-cover border-2 border-[#F97316]" />
               <div><p className="text-[7px] font-black text-[#F97316] uppercase">Comprar</p><p className="text-[10px] font-black uppercase">Kit Banho de Verniz</p></div>
             </div>
