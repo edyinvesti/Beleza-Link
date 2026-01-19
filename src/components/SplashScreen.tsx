@@ -4,26 +4,30 @@ import { motion, AnimatePresence } from "framer-motion";
 export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
   const [isStarted, setIsStarted] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
+  
+  // Criamos a referência do áudio fora para garantir o carregamento precoce
+  const [audio] = useState(new Audio("https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3"));
 
-  // Pré-carregamento do som de impacto
-  const [audio]] = useState(new Audio("https://actions.google.com/sounds/v1/foley/wind_chime_fast.ogg"));
+  useEffect(() => {
+    audio.load(); // Pré-carrega o som assim que o componente monta
+    audio.volume = 0.8;
+  }, [audio]);
 
   const handleStart = () => {
     setIsStarted(true);
     
-    // Configuração de volume e reprodução imediata
-    audio.volume = 0.5;
+    // Tenta tocar o som original solicitado
     audio.play().catch(e => {
-      console.error("Erro ao tocar som:", e);
-      // Fallback: tenta tocar um som alternativo se o primeiro falhar
-      const altAudio = new Audio("https://www.soundjay.com/buttons/sounds/button-30.mp3");
-      altAudio.play();
+      console.warn("Navegador bloqueou áudio inicial, tentando novamente...", e);
+      // Segunda tentativa silenciosa
+      audio.muted = false;
+      audio.play();
     });
 
     setTimeout(() => {
       setIsVisible(false);
       setTimeout(onFinish, 1000);
-    }, 3000); 
+    }, 2800); 
   };
 
   const slogan = "Sempre ao lado do profissional";
@@ -39,17 +43,15 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
           {!isStarted ? (
             <motion.button 
               onClick={handleStart} 
-              className="flex flex-col items-center bg-transparent border-none cursor-pointer outline-none"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="flex flex-col items-center bg-transparent border-none cursor-pointer outline-none group"
             >
-              <div className="w-24 h-24 mb-6 border-2 border-[#F97316] rounded-full flex items-center justify-center relative">
+              <div className="w-24 h-24 mb-6 border-2 border-[#F97316] rounded-full flex items-center justify-center relative transition-transform group-hover:scale-110">
                 <div className="absolute inset-0 rounded-full bg-[#F97316]/20 animate-ping" />
                 <svg width="30" height="30" viewBox="0 0 24 24" fill="none">
                   <path d="M5 3L19 12L5 21V3Z" fill="#F97316" />
                 </svg>
               </div>
-              <span className="text-white font-light tracking-[0.5em] uppercase text-[12px] animate-pulse">
+              <span className="text-white font-light tracking-[0.5em] uppercase text-[12px] opacity-70 group-hover:opacity-100 transition-opacity">
                 Entrar na Experiência
               </span>
             </motion.button>
