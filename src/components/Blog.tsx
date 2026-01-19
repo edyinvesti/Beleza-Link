@@ -1,7 +1,8 @@
 ﻿import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-// Definindo a estrutura do Post para o TypeScript não dar erro
+/** * INTERFACE TÉCNICA (Resolve Erros 2345/2339) 
+ */
 interface Post {
   id: number;
   title: string;
@@ -31,19 +32,20 @@ const allPosts: Post[] = [
 ];
 
 export default function Blog() {
-  // CORREÇÃO: Informando ao TS que o estado pode ser um Post ou null
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => { 
-    if (selectedPost) window.scrollTo(0,0); 
+    if (selectedPost) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [selectedPost]);
 
   return (
-    <div className="min-h-screen bg-black pt-20 pb-10 px-4 text-white font-sans">
+    <div className="min-h-screen bg-black pt-20 pb-10 px-4 text-white font-sans selection:bg-[#F97316] selection:text-black">
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           {!selectedPost ? (
-            <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <div className="mb-20 text-center">
                 <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link Inteligência</h2>
                 <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DIÁRIO</span></h1>
@@ -54,12 +56,12 @@ export default function Blog() {
                   <motion.article 
                     key={post.id} 
                     onClick={() => setSelectedPost(post)} 
-                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all"
+                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all hover:border-[#F97316]/30"
                   >
                     <div className="h-[500px] bg-[#111]">
-                      <img src={post.image} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110" alt={post.title} />
+                      <img src={post.image} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt={post.title} />
                     </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black via-black/10 to-transparent" />
                     <div className="absolute bottom-10 left-10 right-10">
                       <span className="text-[#F97316] text-[10px] font-black uppercase tracking-[0.3em] mb-4 block">{post.category}</span>
                       <h3 className="text-4xl font-bold uppercase tracking-tighter leading-none">{post.title}</h3>
@@ -69,15 +71,21 @@ export default function Blog() {
               </div>
             </motion.div>
           ) : (
-            <motion.div key="reading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="max-w-4xl mx-auto">
+            <motion.div key="reading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="max-w-4xl mx-auto">
                <h2 className="text-5xl md:text-8xl font-black mb-16 leading-none tracking-tighter uppercase">{selectedPost.title}</h2>
-               <img src={selectedPost.image} className="w-full rounded-[40px] mb-12 shadow-2xl" alt={selectedPost.title} />
-               <div className="text-white/80 text-xl md:text-2xl leading-relaxed space-y-12 text-justify pb-20">
+               
+               <div className="rounded-[40px] overflow-hidden mb-16 shadow-[0_0_100px_rgba(0,0,0,1)]">
+                 <img src={selectedPost.image} className="w-full h-full object-cover" alt={selectedPost.title} />
+               </div>
+
+               <div className="text-white/80 text-xl md:text-2xl leading-relaxed space-y-12 text-justify pb-20 px-4 border-l-2 border-[#F97316]/20 ml-2">
                  {selectedPost.content}
-                 <div className="pt-20">
-                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="inline-block w-full bg-[#F97316] text-black text-center py-6 rounded-full font-black text-xl uppercase hover:bg-white transition-all shadow-[0_0_30px_rgba(249,115,22,0.3)]">
+                 
+                 <div className="pt-24">
+                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_20px_50px_rgba(249,115,22,0.2)]">
                       🛒 Adquirir Kit de Manutenção Profissional
                     </a>
+                    <p className="text-center text-[10px] opacity-20 mt-6 uppercase tracking-widest">Tecnologia e Ciência aplicada à sua imagem</p>
                  </div>
                </div>
             </motion.div>
