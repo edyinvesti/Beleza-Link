@@ -1,5 +1,6 @@
 ﻿import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import ScannerIA from "./ScannerIA"; // Importando o seu novo arquivo separado
 
 interface Post {
   id: number;
@@ -17,7 +18,7 @@ const allPosts: Post[] = [
     category: "Masculino", 
     image: "https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAPÍTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contemporânea transcende a estética básica; ela é uma ferramenta de comunicação não-verbal de altíssimo impacto no ambiente de negócios e social. No Beleza Link, tratamos o corte como "Arquitetura Identitária".\n\n[CAPÍTULO II: GEOMETRIA CRANIANA E A FÍSICA DO CORTE EM TESOURA]\nO domínio da tesoura é o que separa o artesão do operador de máquina. Enquanto a máquina corta por impacto mecânico, a tesoura de fio navalha realiza uma secção precisa, preservando a saúde do fio e mantendo o design por muito mais tempo.`
+    content: `[CAPÍTULO I: ANTROPOLOGIA E A PSICOLOGIA DA IMAGEM]\nA imagem masculina contemporânea transcende a estética básica...`
   },
   { 
     id: 2, 
@@ -25,7 +26,7 @@ const allPosts: Post[] = [
     category: "Feminino", 
     image: "https://images.unsplash.com/photo-1595476108010-b4d1f80d77d2?auto=format&fit=crop&q=80&w=1200",
     affiliateLink: "https://shopee.com.br",
-    content: `[CAPÍTULO I: BIOLOGIA E QUÍMICA DA DESCOLORAÇÃO]\nA descoloração capilar é uma intervenção química profunda. Aplicamos "Slow Bleaching" — clareamento lento que respeita o tempo de oxidação da melanina sem comprometer as pontes de dissulfeto.\n\n[CAPÍTULO II: ENGENHARIA DOS BOND BUILDERS]\nUtilizamos tecnologia Plex para atuar como um cimento molecular, reconectando as fibras em tempo real e permitindo atingir tons claríssimos com total segurança.`
+    content: `[CAPÍTULO I: BIOLOGIA E QUÍMICA DA DESCOLORAÇÃO]\nA descoloração capilar é uma intervenção química profunda...`
   }
 ];
 
@@ -33,26 +34,28 @@ export default function Blog() {
   const [selectedPost, setSelectedPost] = useState<Post | null>(null);
 
   useEffect(() => { 
-    if (selectedPost) window.scrollTo({ top: 0, behavior: "smooth" });
+    if (selectedPost) window.scrollTo({ top: 0, behavior: "smooth" }); 
   }, [selectedPost]);
 
   return (
-    <div className="min-h-screen bg-black pt-20 pb-10 px-4 text-white font-sans">
+    <div className="min-h-screen bg-black pt-20 pb-20 px-4 text-white font-sans">
       <div className="max-w-7xl mx-auto">
         <AnimatePresence mode="wait">
           {!selectedPost ? (
             <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+              {/* TÍTULO DO DIÁRIO */}
               <div className="mb-20 text-center">
                 <h2 className="text-[#F97316] text-[10px] font-bold tracking-[0.5em] uppercase mb-4">Beleza Link Inteligência</h2>
                 <h1 className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-none">O <span className="text-[#F97316]">DIÁRIO</span></h1>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+              {/* GRID DE POSTS */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-32">
                 {allPosts.map((post) => (
                   <motion.article 
                     key={post.id} 
                     onClick={() => setSelectedPost(post)} 
-                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all"
+                    className="cursor-pointer group relative bg-[#050505] rounded-[40px] border border-white/5 overflow-hidden transition-all hover:border-[#F97316]/30"
                   >
                     <div className="h-[500px] bg-[#111]">
                       <img src={post.image} className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105" alt={post.title} />
@@ -65,21 +68,22 @@ export default function Blog() {
                   </motion.article>
                 ))}
               </div>
+
+              {/* O CARD DO SCANNER IA - BLOCO SEPARADO */}
+              <ScannerIA />
+              
             </motion.div>
           ) : (
-            <motion.div key="reading" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} className="max-w-4xl mx-auto">
-               {/* O BOTÃO FOI DELETADO DAQUI E DE TODO O ARQUIVO */}
+            /* TELA DE LEITURA */
+            <motion.div key="reading" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="max-w-4xl mx-auto">
                <h2 className="text-5xl md:text-8xl font-black mb-16 leading-none tracking-tighter uppercase">{selectedPost.title}</h2>
-               
-               <div className="rounded-[40px] overflow-hidden mb-16 shadow-2xl">
-                 <img src={selectedPost.image} className="w-full object-cover" alt={selectedPost.title} />
-               </div>
-
+               <img src={selectedPost.image} className="w-full rounded-[40px] mb-12 shadow-2xl" alt={selectedPost.title} />
                <div className="text-white/80 text-xl md:text-2xl leading-relaxed space-y-12 text-justify pb-20 px-4">
                  {selectedPost.content}
-                 <div className="pt-20">
-                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_0_30px_rgba(249,115,22,0.3)]">
-                      Adquirir Kit de Manutenção Profissional
+                 <div className="pt-20 text-center">
+                    <button onClick={() => setSelectedPost(null)} className="text-[#F97316] font-black uppercase tracking-widest text-xs mb-8 block mx-auto underline">Sair da Leitura</button>
+                    <a href={selectedPost.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full bg-[#F97316] text-black text-center py-8 rounded-[30px] font-black text-2xl uppercase hover:bg-white transition-all shadow-[0_10px_40px_rgba(249,115,22,0.3)]">
+                      Adquirir Kit Profissional
                     </a>
                  </div>
                </div>
