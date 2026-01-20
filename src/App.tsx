@@ -1,12 +1,24 @@
-Ôªøimport { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock } from "lucide-react"; // Play removido daqui para evitar erro de 'n√£o utilizado'
+import { Lock } from "lucide-react"; // Play removido daqui para evitar erro de 'n„o utilizado'
 import SplashScreen from "./components/SplashScreen";
 import Live from "./components/Live";
 import Blog from "./components/Blog";
 import CRM from "./components/CRM";
 import Comunidade from "./components/Comunidade";
 import Curso from "./components/Curso";
+        
+        {/* BLOCO SCANNER IA - ADICIONADO VIA ESTRUTURA ISOLADA */}
+        <div className="bg-[#050505] p-8 rounded-[40px] border border-white/5 group hover:border-[#F97316]/50 transition-all">
+          <div className="flex justify-between items-start mb-8">
+            <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
+            <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
+          </div>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÛstico BiomÈtrico Capilar</p>
+          <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
+            Acessar Bloco ?
+          </button>
+        </div>
 import Geo from "./components/Geo";
 
 export default function App() {
@@ -40,10 +52,22 @@ export default function App() {
   if (currentView !== "home") {
     const views: { [key: string]: any } = { 
       live: <Live />, blog: <Blog />, crm: <CRM />, comunidades: <Comunidade />, curso: <Curso />, geo: <Geo />
+        
+        {/* BLOCO SCANNER IA - ADICIONADO VIA ESTRUTURA ISOLADA */}
+        <div className="bg-[#050505] p-8 rounded-[40px] border border-white/5 group hover:border-[#F97316]/50 transition-all">
+          <div className="flex justify-between items-start mb-8">
+            <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
+            <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
+          </div>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÛstico BiomÈtrico Capilar</p>
+          <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
+            Acessar Bloco ?
+          </button>
+        </div>
     };
     return (
       <div className="relative bg-black min-h-screen">
-        <button onClick={() => setCurrentView("home")} className="fixed top-8 left-8 z-[600] bg-[#F97316] text-black p-4 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:scale-110 transition-all">‚Üê Voltar</button>
+        <button onClick={() => setCurrentView("home")} className="fixed top-8 left-8 z-[600] bg-[#F97316] text-black p-4 rounded-2xl font-black uppercase text-[10px] tracking-widest hover:scale-110 transition-all">? Voltar</button>
         {views[currentView]}
       </div>
     );
@@ -54,7 +78,19 @@ export default function App() {
     { n: "Blog", v: "blog", tag: "FREE", color: "bg-green-600", lock: false }, 
     { n: "COMUNIDADE", v: "comunidades", tag: "FREE", color: "bg-green-600", lock: false },
     { n: "CURSO", v: "curso", tag: "FREE", color: "bg-green-600", lock: false },
-    { n: "Geolocaliza√ß√£o", v: "geo", tag: "FREE", color: "bg-green-600", lock: false }, 
+        
+        {/* BLOCO SCANNER IA - ADICIONADO VIA ESTRUTURA ISOLADA */}
+        <div className="bg-[#050505] p-8 rounded-[40px] border border-white/5 group hover:border-[#F97316]/50 transition-all">
+          <div className="flex justify-between items-start mb-8">
+            <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
+            <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
+          </div>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÛstico BiomÈtrico Capilar</p>
+          <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
+            Acessar Bloco ?
+          </button>
+        </div>
+    { n: "GeolocalizaÁ„o", v: "geo", tag: "FREE", color: "bg-green-600", lock: false }, 
     { n: "CRM", v: "crm", tag: "LOCK", color: "bg-zinc-800", lock: true }
   ];
 
@@ -82,19 +118,31 @@ export default function App() {
               <section className="mb-24">
                 <div className="flex items-center gap-4 mb-12">
                    <div className="h-12 w-3 bg-[#F97316] rounded-full"></div>
-                   <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">NOSSA <br/>EXPERI√äNCIA</h2>
+                   <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">NOSSA <br/>EXPERI NCIA</h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                   {cards.map((item) => (
                     <div key={item.n} onClick={() => item.lock ? setShowSystem(true) : setCurrentView(item.v)} 
                       className="bg-zinc-900/50 p-10 rounded-[25px] border border-white/5 shadow-xl cursor-pointer transition-all group hover:bg-zinc-800 relative overflow-hidden">
+        
+        {/* BLOCO SCANNER IA - ADICIONADO VIA ESTRUTURA ISOLADA */}
+        <div className="bg-[#050505] p-8 rounded-[40px] border border-white/5 group hover:border-[#F97316]/50 transition-all">
+          <div className="flex justify-between items-start mb-8">
+            <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
+            <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
+          </div>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÛstico BiomÈtrico Capilar</p>
+          <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
+            Acessar Bloco ?
+          </button>
+        </div>
                       {item.tag && (
                         <div className={`absolute top-0 right-0 ${item.color} px-8 py-3 rounded-bl-[30px] z-50`}>
                           <span className="text-[12px] font-black uppercase text-white">{item.tag}</span>
                         </div>
                       )}
                       <h3 className="text-2xl font-black uppercase text-white group-hover:text-[#F97316] transition-colors">{item.n}</h3>
-                      <div className="text-[12px] text-zinc-400 font-black uppercase mt-8">Acessar Bloco ‚Üí</div>
+                      <div className="text-[12px] text-zinc-400 font-black uppercase mt-8">Acessar Bloco ?</div>
                     </div>
                   ))}
                 </div>
@@ -103,7 +151,7 @@ export default function App() {
                 <h3 className="text-5xl md:text-9xl font-black uppercase tracking-tighter text-white/10 italic mb-16">MARCAS <span className="text-white/20">ELITE</span></h3>
                 <div className="relative h-[450px] flex items-center justify-center overflow-hidden" style={{ perspective: "1500px" }}>
                   <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: "preserve-3d", transform: isMobile ? `rotateX(${rotation}deg)` : `rotateY(${rotation}deg)` }}>
-                    {["LUX GLOSS", "SELAGEM 3D", "PLATINUM PRO", "KYHEROS", "VELVET SKIN", "TREEH HAIR", "CHOKY COSM√âTICOS", "ELASTIKY", "LAED", "CHEQUY"].map((p, i) => (
+                    {["LUX GLOSS", "SELAGEM 3D", "PLATINUM PRO", "KYHEROS", "VELVET SKIN", "TREEH HAIR", "CHOKY COSM…TICOS", "ELASTIKY", "LAED", "CHEQUY"].map((p, i) => (
                       <div key={i} className="absolute w-[180px] md:w-[320px] h-[80px] md:h-[120px] flex items-center justify-center rounded-[20px] bg-zinc-900 border-b-[6px] border-r-[6px] border-black shadow-xl" 
                         style={{ transform: isMobile ? `rotateX(${(i * 360) / 10}deg) translateZ(200px)` : `rotateY(${(i * 360) / 10}deg) translateZ(400px)`, backfaceVisibility: "hidden" }}>
                         <span className="text-[11px] md:text-xl font-black tracking-widest text-zinc-300 uppercase">{p}</span>
