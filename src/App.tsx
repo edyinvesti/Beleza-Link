@@ -1,6 +1,7 @@
+ï»¿import ScannerIA from './components/ScannerIA';
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Lock } from "lucide-react"; // Play removido daqui para evitar erro de 'não utilizado'
+import { Lock } from "lucide-react"; // Play removido daqui para evitar erro de 'nÃ£o utilizado'
 import SplashScreen from "./components/SplashScreen";
 import Live from "./components/Live";
 import Blog from "./components/Blog";
@@ -14,7 +15,7 @@ import Curso from "./components/Curso";
             <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
             <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
           </div>
-          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">Diagnóstico Biométrico Capilar</p>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÃ³stico BiomÃ©trico Capilar</p>
           <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
             Acessar Bloco ?
           </button>
@@ -59,7 +60,7 @@ export default function App() {
             <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
             <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
           </div>
-          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">Diagnóstico Biométrico Capilar</p>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÃ³stico BiomÃ©trico Capilar</p>
           <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
             Acessar Bloco ?
           </button>
@@ -85,12 +86,12 @@ export default function App() {
             <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
             <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
           </div>
-          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">Diagnóstico Biométrico Capilar</p>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÃ³stico BiomÃ©trico Capilar</p>
           <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
             Acessar Bloco ?
           </button>
         </div>
-    { n: "Geolocalização", v: "geo", tag: "FREE", color: "bg-green-600", lock: false }, 
+    { n: "GeolocalizaÃ§Ã£o", v: "geo", tag: "FREE", color: "bg-green-600", lock: false }, 
     { n: "CRM", v: "crm", tag: "LOCK", color: "bg-zinc-800", lock: true }
   ];
 
@@ -118,7 +119,7 @@ export default function App() {
               <section className="mb-24">
                 <div className="flex items-center gap-4 mb-12">
                    <div className="h-12 w-3 bg-[#F97316] rounded-full"></div>
-                   <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">NOSSA <br/>EXPERIÊNCIA</h2>
+                   <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter">NOSSA <br/>EXPERIÃŠNCIA</h2>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                   {cards.map((item) => (
@@ -131,7 +132,7 @@ export default function App() {
             <h3 className="text-2xl font-black uppercase tracking-tighter">Scanner IA</h3>
             <span className="text-[10px] font-black text-[#F97316] border border-[#F97316] px-3 py-1 rounded-full">FREE</span>
           </div>
-          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">Diagnóstico Biométrico Capilar</p>
+          <p className="text-white/40 text-xs mb-8 uppercase tracking-widest">DiagnÃ³stico BiomÃ©trico Capilar</p>
           <button onClick={() => window.location.hash = 'scanner'} className="text-[#F97316] font-black uppercase text-xs tracking-[0.2em] group-hover:translate-x-2 transition-transform inline-flex items-center">
             Acessar Bloco ?
           </button>
@@ -151,7 +152,7 @@ export default function App() {
                 <h3 className="text-5xl md:text-9xl font-black uppercase tracking-tighter text-white/10 italic mb-16">MARCAS <span className="text-white/20">ELITE</span></h3>
                 <div className="relative h-[450px] flex items-center justify-center overflow-hidden" style={{ perspective: "1500px" }}>
                   <div className="relative w-full h-full flex items-center justify-center" style={{ transformStyle: "preserve-3d", transform: isMobile ? `rotateX(${rotation}deg)` : `rotateY(${rotation}deg)` }}>
-                    {["LUX GLOSS", "SELAGEM 3D", "PLATINUM PRO", "KYHEROS", "VELVET SKIN", "TREEH HAIR", "CHOKY COSMÉTICOS", "ELASTIKY", "LAED", "CHEQUY"].map((p, i) => (
+                    {["LUX GLOSS", "SELAGEM 3D", "PLATINUM PRO", "KYHEROS", "VELVET SKIN", "TREEH HAIR", "CHOKY COSMÃ‰TICOS", "ELASTIKY", "LAED", "CHEQUY"].map((p, i) => (
                       <div key={i} className="absolute w-[180px] md:w-[320px] h-[80px] md:h-[120px] flex items-center justify-center rounded-[20px] bg-zinc-900 border-b-[6px] border-r-[6px] border-black shadow-xl" 
                         style={{ transform: isMobile ? `rotateX(${(i * 360) / 10}deg) translateZ(200px)` : `rotateY(${(i * 360) / 10}deg) translateZ(400px)`, backfaceVisibility: "hidden" }}>
                         <span className="text-[11px] md:text-xl font-black tracking-widest text-zinc-300 uppercase">{p}</span>
