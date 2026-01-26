@@ -7,22 +7,14 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
 
   const handleStart = () => {
     setIsStarted(true);
-    console.log("Tentando tocar o som...");
-    
     const audio = new Audio("https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3");
-    audio.volume = 1.0;
-    
-    audio.play()
-      .then(() => console.log("Som de abertura tocado com sucesso!"))
-      .catch(e => {
-        console.error("ERRO NO SOM:", e);
-        alert("O som foi bloqueado pelo navegador ou o link falhou.");
-      });
+    audio.volume = 0.9;
+    audio.play().catch(e => console.error("Erro:", e));
 
     setTimeout(() => {
       setIsVisible(false);
       setTimeout(onFinish, 1000);
-    }, 2500); 
+    }, 2500); // 2.5s Turbo
   };
 
   const slogan = "Sempre ao lado do profissional";
@@ -57,6 +49,7 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
                     initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.4 }} />
                 </svg>
+                
                 <motion.div 
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: [0, 1, 0], scale: [0.5, 2.8, 3.5] }}
@@ -64,16 +57,37 @@ export default function SplashScreen({ onFinish }: { onFinish: () => void }) {
                   className="absolute inset-0 bg-[#F97316] rounded-full blur-[110px] -z-10"
                 />
               </div>
-              <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1, duration: 0.8 }} className="mt-[-20px]">
+
+              <motion.div 
+                initial={{ opacity: 0, y: 15 }} 
+                animate={{ opacity: 1, y: 0 }} 
+                transition={{ delay: 1, duration: 0.8 }}
+                className="mt-[-20px]"
+              >
                 <h1 className="text-4xl font-extralight text-white uppercase tracking-[0.6em] ml-[0.6em]">
                   BELEZA <span className="text-[#F97316] font-black">LINK</span>
                 </h1>
-                <motion.div className="flex justify-center mt-4 overflow-hidden" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.2 }}>
+                
+                {/* ANIMAÇÃO DE LETRAS "TOP" */}
+                <motion.div 
+                  className="flex justify-center mt-4 overflow-hidden"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1.2 }}
+                >
                   {slogan.split("").map((char, index) => (
-                    <motion.span key={index} initial={{ opacity: 0, y: 10, filter: "blur(5px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                      transition={{ delay: 1.2 + (index * 0.03), duration: 0.5, ease: "easeOut" }}
+                    <motion.span
+                      key={index}
+                      initial={{ opacity: 0, y: 10, filter: "blur(5px)" }}
+                      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                      transition={{ 
+                        delay: 1.2 + (index * 0.03), 
+                        duration: 0.5,
+                        ease: "easeOut"
+                      }}
                       className="text-[#F97316] text-[10px] font-bold uppercase italic inline-block"
-                      style={{ whiteSpace: char === " " ? "pre" : "normal", letterSpacing: "0.3em" }}>
+                      style={{ whiteSpace: char === " " ? "pre" : "normal", letterSpacing: "0.3em" }}
+                    >
                       {char}
                     </motion.span>
                   ))}

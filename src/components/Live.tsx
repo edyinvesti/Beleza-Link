@@ -1,87 +1,138 @@
-﻿import { useState, useEffect, useRef } from "react";
-import { Volume2, VolumeX, Send, Share2 } from "lucide-react";
+﻿import { useState } from 'react';
+import { Share2, Users, CheckCircle2 } from 'lucide-react';
 
 export default function Live() {
-  const [msgInput, setMsgInput] = useState("");
-  const [isMuted, setIsMuted] = useState(true);
-  const [chat, setChat] = useState([
-    { id: 1, user: "SISTEMA", text: "Bem-vindos ao Canal Beleza Link!" }
-  ]);
-  
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const chatEndRef = useRef<HTMLDivElement>(null);
+  const [viewers] = useState(1482);
+  const [copied, setCopied] = useState(false);
 
-  const scrollToBottom = () => chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-
-  useEffect(() => {
-    const users = ["MARIA R.", "ANA LÚCIA", "CLÍNICA BELLA", "FERNANDA"];
-    const texts = ["Amo esse kit!", "Melhor live!", "O brilho é incrível!", "Já pedi o meu!"];
-    const interval = setInterval(() => {
-      setChat(prev => [...prev, { id: Date.now() + Math.random(), user: users[Math.floor(Math.random() * users.length)], text: texts[Math.floor(Math.random() * texts.length)] }]);
-      setTimeout(scrollToBottom, 100);
-    }, 5000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleSend = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!msgInput.trim()) return;
-    setChat(prev => [...prev, { id: Date.now(), user: "VOCÊ", text: msgInput.trim() }]);
-    setMsgInput("");
-    setTimeout(scrollToBottom, 100);
+  const handleShare = async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title: 'Beleza Link', url });
+      } else {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 3000);
+      }
+    } catch { console.log("Erro"); }
   };
 
   return (
-    <div className="min-h-screen bg-black text-white pt-24 font-sans">
-      {/* NAVBAR SEM O BOTÃO DUPLICADO */}
-      <nav className="fixed top-0 w-full z-[100] bg-black/95 border-b border-white/5 p-4 flex items-center justify-between px-6">
-        <div className="w-10"></div> {/* Espaçador para manter o AO VIVO centralizado */}
+    <div className="min-h-screen bg-black text-white pt-20 px-4 font-sans overflow-hidden">
+      <style>{`
+        @keyframes b-link-flow {
+          0% { transform: translate3d(0, 0, 0); }
+          100% { transform: translate3d(0, -50%, 0); }
+        }
+        .stream-aside-content {
+          animation: b-link-flow 35s linear infinite;
+          will-change: transform;
+        }
         
-        {/* SINAL AO VIVO */}
-        <div className="flex items-center gap-2 bg-red-600/10 px-4 py-2 rounded-full border border-red-600/20">
-          <span className="w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_10px_rgba(220,38,38,0.8)]"></span>
-          <span className="text-[10px] font-black text-red-600 uppercase tracking-[0.2em]">AO VIVO</span>
-        </div>
+        /* EFEITO DE BORDA NEON PISCANTE */
+        @keyframes neon-glow {
+          0%, 100% { 
+            box-shadow: 0 0 5px #dc2626, 0 0 10px #dc2626;
+            border-color: #ef4444;
+          }
+          50% { 
+            box-shadow: 0 0 20px #dc2626, 0 0 30px #dc2626;
+            border-color: #ffffff;
+          }
+        }
+        .live-neon-badge {
+          animation: neon-glow 1.2s infinite ease-in-out;
+          border-width: 2px;
+          border-style: solid;
+        }
+        
+        @keyframes rec-dot {
+          0% { opacity: 1; }
+          50% { opacity: 0.2; }
+          100% { opacity: 1; }
+        }
+        .rec-indicator {
+          animation: rec-dot 1s infinite;
+        }
+      `}</style>
 
-        <button onClick={() => navigator.share({title: 'Live Beleza Link', url: window.location.href})} className="bg-white/5 text-white p-2.5 rounded-xl border border-white/10">
-          <Share2 size={16} className="text-[#F97316]" />
-        </button>
-      </nav>
+      <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-4 gap-6">
 
-      <main className="px-4 md:px-12 max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8">
-        <div className="lg:col-span-8">
-          <h1 className="text-4xl md:text-7xl font-black uppercase italic mb-6">CANAL <span className="text-[#F97316]">BELEZA LINK</span></h1>
-          <div className="relative aspect-video bg-zinc-900 rounded-[40px] overflow-hidden border border-white/10 shadow-2xl">
-            <video ref={videoRef} className="w-full h-full object-cover" autoPlay loop muted playsInline src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />
-            
-            <div onClick={() => window.open('https://wa.me/5562992115143')} className="absolute top-4 left-4 bg-black/80 p-2 pr-4 rounded-full border border-white/20 flex items-center gap-3 cursor-pointer z-50">
-              <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=100" className="w-10 h-10 rounded-full object-cover border-2 border-[#F97316]" />
-              <div><p className="text-[7px] font-black text-[#F97316] uppercase">Comprar</p><p className="text-[10px] font-black uppercase">Kit Banho de Verniz</p></div>
+        <div className="lg:col-span-3 space-y-4">
+          <div className="relative aspect-video bg-zinc-950 rounded-[40px] overflow-hidden border border-white/5 shadow-2xl">
+
+            {/* SELO AO VIVO COM BORDAS PISCANTES E NEON */}
+            <div className="absolute top-6 left-6 z-20 flex items-center gap-3">
+              <div className="live-neon-badge bg-black/80 backdrop-blur-md px-4 py-1.5 rounded-lg flex items-center gap-2">
+                <div className="w-2.5 h-2.5 bg-red-600 rounded-full rec-indicator shadow-[0_0_8px_#dc2626]"></div>
+                <span className="text-[11px] font-black text-white uppercase tracking-[0.2em]">AO VIVO</span>
+              </div>
+
+              <div className="bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2 border border-white/10">
+                <Users size={14} className="text-[#F97316]" />
+                <span className="text-[11px] font-bold text-white tracking-tight">{viewers.toLocaleString()}</span>
+              </div>
             </div>
 
-            <button onClick={() => {if(videoRef.current) videoRef.current.muted = !videoRef.current.muted; setIsMuted(!isMuted)}} className="absolute bottom-6 right-6 z-50 bg-black/60 p-4 rounded-full border border-white/10">
-              {isMuted ? <VolumeX size={20} /> : <Volume2 size={20} className="text-[#F97316]" />}
+            {/* BOTÃO DE COMPARTILHAR */}
+            <button
+              onClick={handleShare}
+              className={`absolute bottom-6 left-6 z-30 p-5 rounded-full transition-all duration-500 shadow-2xl active:scale-90 ${copied ? 'bg-green-500 text-white' : 'bg-[#F97316] text-black hover:scale-110'}`}
+            >
+              {copied ? <CheckCircle2 size={24} /> : <Share2 size={24} />}
+            </button>
+
+            <video className="w-full h-full object-cover" autoPlay muted loop playsInline>
+              <source src="https://assets.mixkit.co/videos/preview/mixkit-stylist-washing-the-hair-of-a-customer-40432-large.mp4" type="video/mp4" />
+            </video>
+          </div>
+
+          {/* CARD DE OFERTA */}
+          <div className="bg-zinc-900/40 p-6 rounded-[30px] border border-white/5 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="w-14 h-14 bg-white rounded-2xl overflow-hidden shadow-xl">
+                <img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?w=200" className="w-full h-full object-cover" alt="Kit" />
+              </div>
+              <div>
+                <h4 className="font-black text-[#F97316] text-xs uppercase">Kit Elite Profissional</h4>
+                <p className="text-zinc-500 text-[9px] font-bold uppercase tracking-widest">OFERTA EXCLUSIVA</p>
+              </div>
+            </div>
+            <button onClick={() => window.open('https://wa.me/5562992115143')} className="bg-[#F97316] text-black font-black px-8 py-3 rounded-full text-[10px] uppercase hover:bg-white transition-all shadow-lg shadow-orange-500/20">
+              COMPRAR AGORA
             </button>
           </div>
         </div>
 
-        <div className="lg:col-span-4 h-[500px] lg:h-[600px] bg-zinc-900/50 rounded-[40px] border border-white/10 flex flex-col overflow-hidden shadow-2xl">
-          <div className="p-4 border-b border-white/5 bg-white/5 text-[10px] font-bold uppercase text-zinc-500 text-center tracking-widest">Chat da Comunidade</div>
-          <div className="flex-1 overflow-y-auto p-5 space-y-4 scrollbar-hide">
-            {chat.map((c) => (
-              <div key={c.id}>
-                <p className="text-[9px] font-black text-[#F97316] uppercase">{c.user}</p>
-                <p className="text-sm text-zinc-200 bg-white/5 p-3 rounded-2xl border border-white/5 inline-block">{c.text}</p>
-              </div>
-            ))}
-            <div ref={chatEndRef} />
+        {/* CHAT - MANTENDO A ESTRUTURA SEM MUDANÇA RADICAL */}
+        <div className="lg:col-span-1 h-[550px] bg-zinc-900/60 rounded-[40px] border border-white/5 overflow-hidden relative shadow-2xl">
+          <div className="absolute top-0 w-full p-5 z-10 bg-zinc-900/90 border-b border-white/5 backdrop-blur-md">
+            <h3 className="text-[10px] font-black uppercase text-[#F97316] tracking-widest text-center">Chat de Elite</h3>
           </div>
-          <form onSubmit={handleSend} className="p-4 bg-black/40 border-t border-white/10 flex gap-2">
-            <input value={msgInput} onChange={(e) => setMsgInput(e.target.value)} placeholder="Comentar..." className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none" />
-            <button type="submit" className="bg-[#F97316] p-3 rounded-xl text-black font-bold"><Send size={18} /></button>
-          </form>
+          <div className="h-full pt-20 p-6 overflow-hidden">
+            <div className="stream-aside-content space-y-8">
+              {[
+                { u: "Marta_Hair", t: "Que brilho é esse?!", c: "#9ca3af" },
+                { u: "Studio_Elite", t: "Onde clico para comprar?", c: "#F97316" },
+                { u: "Beleza_VIP", t: "Envio rápido para SP?", c: "#9ca3af" },
+                { u: "Ana_Hair", t: "Melhor selagem que usei.", c: "#9ca3af" },
+                { u: "Sandro_Pro", t: "Já comprei o meu!", c: "#F97316" },
+                { u: "Marta_Hair", t: "Que brilho é esse?!", c: "#9ca3af" },
+                { u: "Studio_Elite", t: "Onde clico para comprar?", c: "#F97316" },
+                { u: "Beleza_VIP", t: "Envio rápido para SP?", c: "#9ca3af" },
+                { u: "Ana_Hair", t: "Melhor selagem que usei.", c: "#9ca3af" },
+                { u: "Sandro_Pro", t: "Já comprei o meu!", c: "#F97316" }
+              ].map((m, i) => (
+                <div key={i} className="flex flex-col gap-1">
+                  <span style={{ color: m.c }} className="text-[9px] font-black uppercase tracking-tighter">{m.u}</span>
+                  <p className="text-zinc-400 text-[11px] leading-tight font-medium">{m.t}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
-      </main>
+      </div>
     </div>
   );
 }

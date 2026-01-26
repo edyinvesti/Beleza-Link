@@ -22,7 +22,7 @@ export default function Comunidade() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans">
+    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans animate-in fade-in duration-500">
       <div className="max-w-3xl mx-auto">
         <header className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-[#F97316]/10 text-[#F97316] px-4 py-1 rounded-full text-[9px] font-black uppercase tracking-widest mb-4 border border-[#F97316]/20">
@@ -33,23 +33,19 @@ export default function Comunidade() {
           </h2>
         </header>
 
-        {/* ÁREA DE POSTAGEM */}
         <div className="bg-zinc-900/60 border border-white/10 p-6 rounded-[35px] mb-12 flex flex-col gap-4">
           <textarea 
             placeholder="O que você está criando hoje?" 
             className="w-full bg-transparent border-none text-lg font-medium outline-none resize-none h-24 placeholder:text-zinc-700" 
           />
           <div className="flex justify-between items-center pt-4 border-t border-white/5">
-            <div className="flex gap-4 text-zinc-500">
-               {/* Espaço reservado para anexos futuros */}
-            </div>
+            <div className="flex gap-4 text-zinc-500"></div>
             <button className="bg-white text-black px-8 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-[#F97316] transition-colors active:scale-95">
               Publicar
             </button>
           </div>
         </div>
 
-        {/* FEED DE POSTS */}
         <div className="space-y-6">
           {posts.map((p) => (
             <motion.div 

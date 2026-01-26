@@ -15,40 +15,15 @@ body {
   overflow-x: hidden;
 }
 
-/* Mobile Optimizations */
+/* Global Mobile Optimizations */
 html {
   scroll-behavior: smooth;
-  -webkit-tap-highlight-color: rgba(249, 115, 22, 0.3);
+  -webkit-tap-highlight-color: transparent; /* Remove default tap highlight lines */
 }
 
-/* Prevent unwanted zoom on inputs in mobile */
-@media screen and (max-width: 768px) {
-  input[type="text"],
-  input[type="password"],
-  input[type="email"],
-  input[type="number"],
-  select,
-  textarea {
-    font-size: 16px !important;
-  }
-}
-
-/* Touch action optimization */
-button,
-a,
-[role="button"] {
+/* Element-specific interactions */
+button, a, [role="button"] {
   touch-action: manipulation;
-}
-
-/* Performance optimizations for animations on mobile */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
 }
 
 /* Scrollbar Customizada Estilo Luxo */
@@ -66,20 +41,46 @@ a,
   background: #F97316;
 }
 
-/* Mobile touch utilities */
+/* Utilities Layer */
 @layer utilities {
   .touch-target {
     min-width: 44px;
     min-height: 44px;
   }
   
-  .no-tap-highlight {
-    -webkit-tap-highlight-color: transparent;
-  }
-  
-  @media (max-width: 768px) {
-    .mobile-compact {
-      padding: 1rem !important;
-    }
+  .gpu-layer {
+    transform: translateZ(0);
+    will-change: transform, opacity;
   }
 }
+
+/* Mobile Specific Adjustments */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="password"],
+  input[type="email"],
+  input[type="number"],
+  select,
+  textarea {
+    font-size: 16px !important; /* Prevent zoom */
+  }
+  
+  .mobile-compact {
+    padding: 1rem !important;
+  }
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+* {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+

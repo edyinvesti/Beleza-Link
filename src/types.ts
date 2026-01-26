@@ -49,6 +49,8 @@ export interface Client {
   lastVisit: string;
   totalSpent: number;
   avatar?: string;
+  category?: string;
+  status?: string;
 }
 
 export interface Transaction {

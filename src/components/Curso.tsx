@@ -8,7 +8,6 @@ export default function Curso() {
   const [filtroAtivo, setFiltroAtivo] = useState("TODOS");
   const [showLogin, setShowLogin] = useState(false);
 
-  // --- CONFIGURAÇÃO DOS CURSOS E CATEGORIAS ---
   const categorias = [
     {
       nome: "CABELEREIRO PROFISSIONAL",
@@ -30,22 +29,13 @@ export default function Curso() {
         { id: 20, titulo: "Limpeza de Pele Profunda", img: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?q=80&w=800", desc: "Protocolos completos para extração e hidratação.", aulas: ["Anatomia da Pele", "Extração Manual"], horas: "20h", progresso: 40, linkHotmart: "#" },
         { id: 21, titulo: "Drenagem Linfática", img: "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=800", desc: "Técnicas corporais para redução de medidas.", aulas: ["Sistema Linfático", "Manobras"], horas: "25h", progresso: 15, linkHotmart: "#" }
       ]
-    },
-    {
-      nome: "MAQUIAGEM PRO",
-      cursos: [
-        { id: 30, titulo: "Maquiagem Social", img: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=800", desc: "Pele blindada e esfumado clássico.", aulas: ["Preparação de Pele", "Colorimetria"], horas: "12h", progresso: 50, linkHotmart: "#" },
-        { id: 31, titulo: "Noivas de Gala", img: "https://images.unsplash.com/photo-1522338242992-e1a54906a8da?q=80&w=800", desc: "Maquiagem de alta durabilidade para eventos.", aulas: ["Aplicação de Cílios", "Técnicas de Luz"], horas: "18h", progresso: 5, linkHotmart: "#" }
-      ]
     }
   ];
 
-  const listaFiltros = ["TODOS", "CABELEREIRO", "MANICURE", "ESTÉTICA", "MAQUIAGEM"];
+  const listaFiltros = ["TODOS", "CABELEREIRO", "MANICURE", "ESTÉTICA"];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans overflow-x-hidden">
-      
-      {/* --- NAVEGAÇÃO SUPERIOR --- */}
+    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans overflow-x-hidden animate-in fade-in duration-500">
       <nav className="flex justify-between items-center mb-12 mt-4 relative z-[100] max-w-7xl mx-auto w-full">
         <div className="text-[#F97316] font-black text-xl italic tracking-tighter">BELEZA LINK</div>
         <button onClick={() => setShowLogin(true)} className="flex items-center gap-2 bg-white/5 border border-white/10 px-4 md:px-6 py-2.5 rounded-2xl text-[10px] font-black uppercase tracking-widest active:scale-95 transition-all">
@@ -53,7 +43,6 @@ export default function Curso() {
         </button>
       </nav>
 
-      {/* --- CABEÇALHO --- */}
       <header className="mb-12 relative z-10 max-w-7xl mx-auto w-full text-left">
         <h2 className="text-[2.4rem] md:text-7xl font-black uppercase tracking-tighter mb-8 leading-[0.85] text-white">
           Sua Carreira na <br className="hidden md:block"/>
@@ -68,7 +57,6 @@ export default function Curso() {
         </div>
       </header>
 
-      {/* --- GRID DE CURSOS --- */}
       <div className="max-w-7xl mx-auto w-full">
         {categorias.filter(cat => filtroAtivo === "TODOS" || cat.nome.includes(filtroAtivo)).map((secao, idx) => (
           <section key={idx} className="mb-12 text-left">
@@ -77,14 +65,13 @@ export default function Curso() {
               {secao.cursos.map((curso) => (
                 <div key={curso.id} onClick={() => {setSelectedCurso(curso); setShowLock(false);}} className="bg-zinc-900/40 rounded-[35px] overflow-hidden border border-white/5 shadow-2xl cursor-pointer group hover:border-[#F97316]/30 transition-all">
                   <div className="relative h-44 overflow-hidden">
-                    <img src={curso.img} className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" />
+                    <img src={curso.img} className="h-full w-full object-cover opacity-60 group-hover:opacity-80 transition-opacity" alt={curso.titulo} />
                   </div>
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-3">
                       <h4 className="font-black text-[12px] uppercase tracking-wide line-clamp-1 flex-1">{curso.titulo}</h4>
                       <span className="text-[10px] font-bold text-zinc-600 ml-2 italic">{curso.horas}</span>
                     </div>
-                    
                     <div className="flex items-center gap-3">
                       <div className="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden">
                         <div className="h-full bg-[#F97316]" style={{ width: curso.progresso + '%' }}></div>

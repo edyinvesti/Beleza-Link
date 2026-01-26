@@ -1,5 +1,4 @@
-﻿import { Users, UserPlus, Search, Filter, MoreHorizontal, CheckCircle2, Clock } from "lucide-react";
-import { motion } from "framer-motion";
+﻿import { UserPlus, Search, Filter, CheckCircle2, Clock } from "lucide-react";
 
 export default function CRM() {
   const clientes = [
@@ -9,7 +8,7 @@ export default function CRM() {
   ];
 
   return (
-    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans">
+    <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 px-4 md:px-12 font-sans animate-in fade-in duration-500">
       <div className="max-w-7xl mx-auto">
         <header className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
           <div>
@@ -30,7 +29,7 @@ export default function CRM() {
           ))}
         </div>
 
-        <div className="bg-zinc-900/40 border border-white/5 rounded-[40px] overflow-hidden">
+        <div className="bg-zinc-900/40 border border-white/5 rounded-[40px] overflow-hidden shadow-2xl">
           <div className="p-8 border-b border-white/5 flex flex-col md:flex-row justify-between gap-4">
              <div className="relative flex-1">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-600" size={18} />
